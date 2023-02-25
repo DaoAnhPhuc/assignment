@@ -1,0 +1,76 @@
+1.
+// Student may implement another function as need
+
+void process(const char str[], char outstr[])
+{
+    int tmpstrLength = 0, strLength = strlen(str), outstrLength = 0;
+    char tmpstr[100];
+
+    // Delete those character that is neither in abcABC or a spacebar
+    for (int i = 0; i < strLength; ++i)
+    {
+        if (('a' <= str[i] && str[i] <= 'z') || ('A' <= str[i] && str[i] <= 'Z') || (str[i] == ' '))
+            tmpstr[tmpstrLength++] = str[i];
+    }
+    tmpstr[tmpstrLength] = '\0';
+
+    // Delete excess spacebars
+    bool flag = false;
+    int i = 0;
+    while (i < tmpstrLength)
+    {
+        while (tmpstr[i] == ' ') i++;
+        if (flag && tmpstr[i - 1] == ' ') outstr[outstrLength++] = ' ';
+        else flag = true;
+
+        outstr[outstrLength++] = tmpstr[i++];
+    }
+    outstr[outstrLength] = '\0';
+
+    // Uppercase and lowercase management
+    for (int i = 0; i < outstrLength; ++i)
+    {
+        if ((i == 0 || outstr[i - 1] == ' ') && ('a' <= outstr[i] && outstr[i] <= 'z')) 
+            outstr[i] = outstr[i] - 'a' + 'A';
+
+        if ((i != 0 && outstr[i - 1] != ' ') && ('A' <= outstr[i] && outstr[i] <= 'Z'))
+            outstr[i] = outstr[i] - 'A' + 'a';
+    }
+}
+
+
+2.
+void printFirstRepeatedWord(char str[]) 
+{
+    char *words[100];
+    int strLength = strlen(str);
+    int numberOfWord = 0;
+
+    int i = 0;
+    while (i < strLength)
+    {
+        char *tmpstr = new char[100];
+        int tmpstrLength = 0;
+        
+        while (str[i] != ' ' && i < strLength)
+        {
+            tmpstr[tmpstrLength++] = str[i++];
+        }
+        tmpstr[tmpstrLength] = '\0';
+        words[numberOfWord++] = tmpstr;
+        i++;
+    }
+    
+    for (int i = 0; i < numberOfWord - 1; ++i)
+    {
+        for (int j = i + 1; j < numberOfWord; ++j)
+        {
+            if (!strcmp(words[i], words[j]))
+            {
+                cout << words[i]; return;
+            }
+        }
+    }
+
+    cout << "No Repetition";
+}
