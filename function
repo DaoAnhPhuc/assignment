@@ -1,0 +1,174 @@
+//funtion inlab
+
+1.
+#include <cstring>
+
+bool isPalindrome(const char* str) {
+
+    
+    int middle = strlen(str)/2;
+    
+    for (int counter = 0, otherCounter = strlen(str)-1 ; counter <= middle; ++counter, --otherCounter)
+       {
+           if (str[counter] != str[otherCounter])
+            return 0;
+            
+            else if (str[counter] == str[otherCounter] && counter < middle) 
+                continue;
+                
+                else return 1;
+       }
+    
+}
+
+2.
+
+//the digit will be place in the reverse order compares to the default integer
+
+
+
+
+int digitExtractorAndSumming (int n) {
+    int store = n;
+    int index = 0;
+    
+    while ( n != 0)
+        {
+           
+            n /= 10;
+            ++index;
+        }
+    int digitStorage[index] = {1,1,1};
+    int increment = index;
+    
+    //ex: 123 index = 3;
+    
+    int sumOfEachDigit = 0;
+    while ( store != 0)
+    {
+        --index;
+        digitStorage[index] = store%10;
+        
+        store /= 10;
+    }
+        
+        for ( int counter = 0; counter <= increment - 1; ++counter)
+            sumOfEachDigit += digitStorage[counter];
+        
+        return sumOfEachDigit;
+}
+
+
+bool isPrimeInteger (int n)
+{
+    
+    int checker = 0;
+    
+    if ( n ==  0 || n == 1)
+        return 0;
+    
+        
+     for ( int counter = 1; counter <= n; ++counter)
+      {
+          if ( n%counter == 0 )  
+            ++checker;
+      }
+      
+      if ( checker == 2)
+        return 1;
+      
+      else return 0;
+}
+
+
+
+
+bool isSpecialNumber(int n) {
+    // Write your code 
+    bool result = isPrimeInteger(n)*isPrimeInteger(digitExtractorAndSumming(n));
+    
+}
+
+3.
+
+
+#include <cstring>
+
+void encrypt(char* text, int shift) {
+    // Write your code 
+    for (int counter = 0; counter <= strlen(text)-1; ++counter)
+    {
+        
+        //Upper case letters
+        
+        if(text[counter] >= 'A' && text[counter] <= 'Z')
+            {
+                text[counter] = 'A' + (text[counter]+shift-'A')%26;
+            }
+            
+        //Lower case letters
+        
+        else if (text[counter] >= 'a' && text[counter] <= 'z')
+            {
+                text[counter] = 'a' + (text[counter]+shift-'a')%26;
+            }
+    }
+    
+
+}
+
+void decrypt(char* text, int shift) {
+     // Write your code 
+    for (int counter = 0; counter <= strlen(text)-1; ++counter)
+    {
+        
+        //Upper case letters
+        
+        if(text[counter] >= 'A' && text[counter] <= 'Z')
+            {
+                text[counter] = 'Z' + (text[counter]-shift-'Z')%26;
+            }
+            
+        //Lower case letters
+        
+        else if (text[counter] >= 'a' && text[counter] <= 'z')
+            {
+                text[counter] = 'z' + (text[counter]-shift-'z')%26;
+            }
+    }
+    
+
+}
+
+4.
+bool checkElementsUniqueness(int* arr, int n) {
+    // Write your code 
+    for ( int index = 0; index <= n - 1; ++index )  
+        for ( int  counter = 0; counter <= n - 1; ++counter)
+                {
+                    if (arr[index] != arr[counter] )
+                        continue;
+                    
+                    else if ( arr[index] == arr[counter] && index != counter)
+                        return false;
+                }
+ 
+    return true;
+}
+
+
+5.
+
+long int decimalToBinary(int decimal_number)
+{
+	/*
+	* STUDENT ANSWER
+	*/
+    if (decimal_number == 0)
+          return 0;
+        
+     else return (decimal_number % 2 + 10 * decimalToBinary(decimal_number / 2));
+	    
+}
+
+
