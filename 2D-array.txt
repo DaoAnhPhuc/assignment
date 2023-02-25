@@ -1,6 +1,5 @@
 //Multi dimensional arrays
 
-Exercise 1:
 1.
 int ascendingRows(int arr[0][1000], int row, int col) {
     int hn1 = 0;
