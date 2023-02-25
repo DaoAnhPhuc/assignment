@@ -1,0 +1,78 @@
+//File I/O
+
+1.
+
+#include <string>
+#include <fstream>
+#include <iostream>
+#include<algorithm>
+
+using namespace std;
+
+
+void uppercase(string output)   {
+    // TODO
+      string input;
+      
+      fstream myFile;
+      
+      cin >> input;
+      
+      transform(input.begin(), input.end(), input.begin(), ::toupper);
+      
+      myFile.open(output , ios::out);
+      
+      if (myFile.is_open())
+      {
+          myFile << input;
+      } 
+}
+
+2.
+
+void threeChars(string fileName)   
+{
+    ifstream ip; ip.open(fileName);
+    string s;
+    while (ip >> s && s != "***")
+    {
+        if (s[0] <= s[1] && s[1] <= s[2]) cout << "true";
+        else cout << "false";
+        cout << '\n';
+    }
+}
+
+3.
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+float a[1000][1000];
+
+void process(string fileName)   
+{
+    ifstream ip; ip.open(fileName);
+
+
+    int n, m; ip >> n >> m;
+    for (int i = 0; i < n; ++i)
+    {
+        for (int j = 0; j < m; ++j) ip >> a[i][j];
+    }
+
+    float mx, mxOverall = -10000000000;
+    for (int i = 0; i < n; ++i)
+    {
+        mx = -10000000000;
+        for (int j = 0; j < m; ++j)
+        {
+            mx = max(mx, a[i][j]);
+            mxOverall = max(mxOverall, a[i][j]);
+        }
+
+        cout << mx << ' ';
+    }
+
+    cout << mxOverall;
+}
