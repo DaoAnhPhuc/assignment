@@ -1,0 +1,73 @@
+//Multi dimensional arrays
+
+Exercise 1:
+1.
+int ascendingRows(int arr[0][1000], int row, int col) {
+    int hn1 = 0;
+    
+    for (int r = 0; r < row; ++r)
+    {
+        int value = arr[r][0], point = 0;
+        
+        for (int c = 0; c < col; ++c)
+        {
+           
+            
+            if ( value < arr[r][c] )
+                  {
+                      value = arr[r][c];
+                  }
+                
+                else if (value > arr[r][c] )
+                {
+                    --point;
+                }
+        }
+        
+        if (point >= 0) 
+            ++hn1;
+    }
+    
+    return hn1;
+}
+
+2.
+
+bool isPrime(int number)
+{
+    if(number == 2)
+        return true;
+
+    if(number < 2 || number % 2 == 0)
+        return false;
+
+    /*
+     * we only need to check until the sqrt
+     * and we can omit the even numbers as well
+     */
+    for(int i = 3; i*i <= number; i += 2)
+        if(number % i == 0)
+            return false;
+
+    return true;
+}
+
+int primeColumns(int arr[][1000], int row, int col) {
+    
+    int hn2 = 0;
+    
+     for (int c = 0; c < col; ++c) 
+     {
+        int total = 0;
+        for (int r = 0; r < row; ++r) {
+        total += arr[r][c];
+    }
+            
+            
+        if (isPrime(total) == true)
+                ++hn2;
+    }
+    
+    return hn2;
+    
+}
